@@ -1,15 +1,15 @@
-const enum Page {
+export const enum Page {
   Intro = "Intro",
   Hashing = "Hashing",
   Symmetric = "Symmetric",
   Public = "Public"
 }
 
-interface IPageAction {
+export interface IPageAction {
   type: Page;
 }
 
-interface IPageState {
+export interface IPageState {
   currentPage: Page;
 }
 
