@@ -1,3 +1,4 @@
+import * as React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import Navbar from "../components/Navbar";
@@ -9,7 +10,8 @@ export function mapStateToProps({ currentPage }: IPageState) {
 
 export function mapDispatchToProps(dispatch: Dispatch<IPageAction>) {
   return {
-    onClick: () => dispatch({ type: Page.Hashing })
+    onClick: (e: React.MouseEvent<HTMLAnchorElement>) =>
+      dispatch({ type: Page.Hashing })
   };
 }
 

@@ -3,7 +3,7 @@ import { IPageState, Page } from "../reducers/CurrentPage";
 
 export interface IPageProps extends IPageState {
   currentPage: Page;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 function Navbar({ currentPage, onClick }: IPageProps) {
@@ -30,7 +30,7 @@ function Navbar({ currentPage, onClick }: IPageProps) {
               "nav-item" + (currentPage === Page.Intro ? " active" : "")
             }
           >
-            <a className="nav-link" href="#" onClick={onClick} id="intro">
+            <a className="nav-link" href="#" onClick={onClick} id={Page.Intro}>
               Intro
             </a>
           </li>
@@ -39,7 +39,12 @@ function Navbar({ currentPage, onClick }: IPageProps) {
               "nav-item" + (currentPage === Page.Hashing ? " active" : "")
             }
           >
-            <a className="nav-link" href="#" onClick={onClick} id="hashing">
+            <a
+              className="nav-link"
+              href="#"
+              onClick={onClick}
+              id={Page.Hashing}
+            >
               Hashing
             </a>
           </li>
@@ -48,7 +53,12 @@ function Navbar({ currentPage, onClick }: IPageProps) {
               "nav-item" + (currentPage === Page.Symmetric ? " active" : "")
             }
           >
-            <a className="nav-link" href="#" onClick={onClick} id="symmetric">
+            <a
+              className="nav-link"
+              href="#"
+              onClick={onClick}
+              id={Page.Symmetric}
+            >
               Symmetric Crypto
             </a>
           </li>
@@ -57,7 +67,7 @@ function Navbar({ currentPage, onClick }: IPageProps) {
               "nav-item" + (currentPage === Page.Public ? " active" : "")
             }
           >
-            <a className="nav-link" href="#" onClick={onClick} id="public">
+            <a className="nav-link" href="#" onClick={onClick} id={Page.Public}>
               Public Key Crypto
             </a>
           </li>
