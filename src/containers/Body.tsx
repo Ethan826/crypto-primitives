@@ -1,5 +1,5 @@
-import Intro from "../components/Intro";
 import { Dispatch } from "redux";
+import Intro from "../components/Intro";
 
 export function mapStateToProps({ enthusiasmLevel, languageName }: StoreState) {
   return {

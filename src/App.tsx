@@ -1,6 +1,6 @@
 import * as React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Body from "./components/Body";
+import Body from "./containers/Body";
 import Navbar from "./containers/Navbar";
 
 class App extends React.Component {
