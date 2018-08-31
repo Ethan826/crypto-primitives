@@ -1,25 +1,8 @@
-const enum Page {
-  Intro = "Intro",
-  Hashing = "Hashing",
-  Symmetric = "Symmetric",
-  Public = "Public"
-}
+import { combineReducers } from "redux";
+import CurrentPage from "./CurrentPage";
 
-interface IState {
-  page: Page;
-}
+const rootReducer = combineReducers({
+  CurrentPage
+});
 
-interface IPageAction {
-  type: Page;
-}
-
-const CurrentPage = (state: IState, action: IPageAction): IState => {
-  switch (action.type) {
-    case Page.Intro
-      return { ...state, page: Page.Intro };
-    default:
-      return state;
-  }
-};
-
-export default CurrentPage;
+export default rootReducer;
