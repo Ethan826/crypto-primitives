@@ -1,18 +1,12 @@
-import { Dispatch } from "redux";
-import Intro from "../components/Intro";
+import { connect } from "react-redux";
+// import { Dispatch } from "redux";
+import Body from "../components/Body";
+import { IStoreState } from "../components/types";
 
-export function mapStateToProps({ enthusiasmLevel, languageName }: StoreState) {
-  return {
-    enthusiasmLevel,
-    name: languageName
-  };
-}
+const mapStateToProps = ({ currentPage }: IStoreState) => currentPage;
 
-export function mapDispatchToProps(dispatch: Dispatch) {
-  return {};
-}
+// const mapDispatchToProps = (dispatch: Dispatch) => {
+//   return {};
+// };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Hello);
+export default connect(mapStateToProps)(Body);
