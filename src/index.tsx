@@ -3,13 +3,20 @@ import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import App from "./App";
-import { IStoreState } from "./components/types";
 import "./index.css";
 import rootReducer from "./reducers";
-import { IPageAction } from "./reducers/CurrentPage";
+import { IPageAction, Page } from "./reducers/CurrentPage";
 import registerServiceWorker from "./registerServiceWorker";
+import { IStoreState } from "./types";
 
-const store = createStore<IStoreState, IPageAction, null, null>(rootReducer);
+export const defaultState: IStoreState = {
+  navigation: { currentPage: Page.Intro }
+};
+
+const store = createStore<IStoreState, IPageAction, null, null>(
+  rootReducer,
+  defaultState
+);
 
 ReactDOM.render(
   <Provider store={store}>

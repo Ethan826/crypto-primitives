@@ -2,9 +2,10 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import Navbar from "../components/Navbar";
-import { IPageAction, IPageState, Page } from "../reducers/CurrentPage";
+import { IPageAction, Page } from "../reducers/CurrentPage";
+import { INavigationState } from "../types";
 
-export function mapStateToProps({ currentPage }: IPageState) {
+export function mapStateToProps({ currentPage }: INavigationState) {
   return { currentPage };
 }
 

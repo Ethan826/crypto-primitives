@@ -1,7 +1,8 @@
 import * as React from "react";
-import { IPageState, Page } from "../reducers/CurrentPage";
+import { Page } from "../reducers/CurrentPage";
+import { INavigationState } from "../types";
 
-export interface IPageProps extends IPageState {
+export interface IPageProps extends INavigationState {
   currentPage: Page;
   onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }

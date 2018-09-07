@@ -1,4 +1,4 @@
-import { defaultState, IStoreState } from "../components/types";
+import { IStoreState } from "../types";
 
 export const enum Page {
   Intro = "Intro",
@@ -11,17 +11,14 @@ export interface IPageAction {
   type: Page;
 }
 
-const CurrentPage = (
-  state: IStoreState = defaultState,
-  action: IPageAction
-): IStoreState => {
+const CurrentPage = (state: IStoreState, action: IPageAction): IStoreState => {
   switch (action.type) {
     case Page.Intro:
-      return { ...state, currentPage: Page.Intro };
+      return { ...state, navigation: { currentPage: Page.Intro } };
     case Page.Hashing:
-      return { ...state, currentPage: Page.Hashing };
+      return { ...state, navigation: { currentPage: Page.Hashing } };
     case Page.Symmetric:
-      return { ...state, currentPage: Page.Symmetric };
+      return { ...state, navigation: { currentPage: Page.Symmetric } };
     default:
       return state;
   }
