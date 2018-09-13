@@ -1,19 +1,19 @@
 import * as React from "react";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Body from "./containers/Body";
-import Navbar from "./containers/Navbar";
+import "./App.css";
+import Hello from "./components/Hello";
 
-const App = () => {
+function App() {
   return (
-    <div className="App container-fluid">
-      <Navbar />
-      <main role="main" className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-        <div className="row">
-          <Body />
-        </div>
-      </main>
+    <div className="App">
+      <div className="App-header">
+        <h2>Welcome to React</h2>
+      </div>
+      <p className="App-intro">
+        To get started, edit <code>src/App.tsx</code> and save to reload.
+      </p>
+      <Hello name="TypeScript" />
     </div>
   );
-};
+}
 
 export default App;
