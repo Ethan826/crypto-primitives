@@ -5,18 +5,11 @@ import { createStore } from "redux";
 import App from "./App";
 import "./index.css";
 import rootReducer from "./reducers";
-import { IPageAction, Page } from "./reducers/CurrentPage";
+import { IPageAction } from "./reducers/currentPage";
 import registerServiceWorker from "./registerServiceWorker";
 import { IStoreState } from "./types";
 
-export const defaultState: IStoreState = {
-  navigation: { currentPage: Page.Intro }
-};
-
-const store = createStore<IStoreState, IPageAction, null, null>(
-  rootReducer,
-  defaultState
-);
+const store = createStore<IStoreState, IPageAction, null, null>(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,14 +1,10 @@
 import * as React from "react";
-import { Page } from "../reducers/CurrentPage";
+import { IStoreState } from "../types";
+// import { INavigationState } from "../types";
 
-// tslint:disable-next-line:no-empty-interface
-export interface IProps {
-  currentPage: Page;
-}
-
-const Body = ({ currentPage }: IProps) => {
+const Body = ({ currentPage }: IStoreState) => {
   return (
-    <div className="hello">
+    <div>
       <p>{currentPage}</p>
     </div>
   );

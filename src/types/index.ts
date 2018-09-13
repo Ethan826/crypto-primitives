@@ -1,9 +1,5 @@
-import { Page } from "../reducers/CurrentPage";
-
-export interface INavigationState {
-  currentPage: Page;
-}
+import { Page } from "../reducers/currentPage";
 
 export interface IStoreState {
-  navigation: INavigationState;
+  currentPage: Page;
 }

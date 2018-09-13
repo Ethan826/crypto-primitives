@@ -1,13 +1,22 @@
 import * as React from "react";
-import { Page } from "../reducers/CurrentPage";
-import { INavigationState } from "../types";
+import { Page } from "../reducers/currentPage";
+import { IStoreState } from "../types";
 
-export interface IPageProps extends INavigationState {
+export interface IPageProps extends IStoreState {
   currentPage: Page;
-  onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  selectHashing: () => void;
+  selectIntro: () => void;
+  selectPublic: () => void;
+  selectSymmetric: () => void;
 }
 
-function Navbar({ currentPage, onClick }: IPageProps) {
+function Navbar({
+  currentPage,
+  selectHashing,
+  selectIntro,
+  selectPublic,
+  selectSymmetric
+}: IPageProps) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light navbar sticky-top">
       <a className="navbar-brand" href="#">
@@ -31,7 +40,7 @@ function Navbar({ currentPage, onClick }: IPageProps) {
               "nav-item" + (currentPage === Page.Intro ? " active" : "")
             }
           >
-            <a className="nav-link" href="#" onClick={onClick} id={Page.Intro}>
+            <a className="nav-link" href="#" onClick={selectIntro}>
               Intro
             </a>
           </li>
@@ -40,12 +49,7 @@ function Navbar({ currentPage, onClick }: IPageProps) {
               "nav-item" + (currentPage === Page.Hashing ? " active" : "")
             }
           >
-            <a
-              className="nav-link"
-              href="#"
-              onClick={onClick}
-              id={Page.Hashing}
-            >
+            <a className="nav-link" href="#" onClick={selectHashing}>
               Hashing
             </a>
           </li>
@@ -54,12 +58,7 @@ function Navbar({ currentPage, onClick }: IPageProps) {
               "nav-item" + (currentPage === Page.Symmetric ? " active" : "")
             }
           >
-            <a
-              className="nav-link"
-              href="#"
-              onClick={onClick}
-              id={Page.Symmetric}
-            >
+            <a className="nav-link" href="#" onClick={selectSymmetric}>
               Symmetric Crypto
             </a>
           </li>
@@ -68,7 +67,7 @@ function Navbar({ currentPage, onClick }: IPageProps) {
               "nav-item" + (currentPage === Page.Public ? " active" : "")
             }
           >
-            <a className="nav-link" href="#" onClick={onClick} id={Page.Public}>
+            <a className="nav-link" href="#" onClick={selectPublic}>
               Public Key Crypto
             </a>
           </li>

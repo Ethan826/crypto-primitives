@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
-import CurrentPage from "./CurrentPage";
+import { IStoreState } from "./../types/index";
+import currentPage from "./currentPage";
 
-const rootReducer = combineReducers({
-  navigation: CurrentPage
+const rootReducer = combineReducers<IStoreState>({
+  currentPage
 });
 
 export default rootReducer;
