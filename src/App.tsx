@@ -1,10 +1,10 @@
 import * as React from "react";
-import Hello from "./components/Hello";
+import Hashing from "./components/Hashing";
 
 function App() {
   return (
     <div className="container">
-      <Hello name="TypeScript" />
+      <Hashing name="TypeScript" />
     </div>
   );
 }

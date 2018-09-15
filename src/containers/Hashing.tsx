@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import * as actions from "../actions/";
-import { EnthusiasmAction } from "../actions/";
-import Hello from "../components/Hello";
-import { IStoreState } from "../types/index";
+import * as actions from "../actions";
+import { EnthusiasmAction } from "../actions";
+import Hashing from "../components/Hashing";
+import { IStoreState } from "../types";
 
 export function mapStateToProps({
   enthusiasmLevel,
@@ -24,4 +24,4 @@ export function mapDispatchToProps(dispatch: Dispatch<EnthusiasmAction>) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Hello);
+)(Hashing);

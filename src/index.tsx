@@ -6,7 +6,7 @@ import "../node_modules/materialize-css/dist/js/materialize";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { EnthusiasmAction } from "./actions";
-import Hello from "./containers/Hello";
+import Hashing from "./containers/Hashing";
 import { enthusiasm } from "./reducers/index";
 import { IStoreState } from "./types/index";
 
@@ -20,7 +20,7 @@ const store = createStore<IStoreState, EnthusiasmAction, null, null>(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Hello />
+    <Hashing />
   </Provider>,
   document.getElementById("root") as HTMLElement
 );

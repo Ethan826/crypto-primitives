@@ -6,7 +6,7 @@ export interface IProps {
   onChange?: (e: string) => void;
 }
 
-function Hello({ name, enthusiasmLevel = 1, onChange }: IProps) {
+function Hashing({ name, enthusiasmLevel = 1, onChange }: IProps) {
   if (enthusiasmLevel <= 0) {
     throw new Error("You could be a little more enthusiastic. :D");
   }
@@ -38,4 +38,4 @@ function Hello({ name, enthusiasmLevel = 1, onChange }: IProps) {
   );
 }
 
-export default Hello;
+export default Hashing;
