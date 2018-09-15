@@ -1,47 +1,41 @@
 import * as React from "react";
-import "./Hello.css";
 
 export interface IProps {
   name: string;
   enthusiasmLevel?: number;
-  onIncrement?: () => void;
-  onDecrement?: () => void;
   onChange?: (e: string) => void;
 }
 
-function Hello({
-  name,
-  enthusiasmLevel = 1,
-  onIncrement,
-  onDecrement,
-  onChange
-}: IProps) {
+function Hello({ name, enthusiasmLevel = 1, onChange }: IProps) {
   if (enthusiasmLevel <= 0) {
     throw new Error("You could be a little more enthusiastic. :D");
   }
 
   const handleChange = onChange
-    ? (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)
+    ? (e: React.ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)
     : undefined;
 
   return (
-    <div className="hello">
-      <div className="greeting">
-        Hello {name + getExclamationMarks(enthusiasmLevel)}
+    <div className="row">
+      <div className="col s12">
+        <form className="col s12">
+          <div className="row">
+            <div className="input-field col s12">
+              <textarea
+                className="materialize-textarea"
+                onChange={handleChange}
+              />
+              <label>Input text to hash</label>
+            </div>
+          </div>
+        </form>
+        <div className="col">
+          <h5>The output of the SHA256 hashing function is</h5>
+          <p>{name}</p>
+        </div>
       </div>
-      <div>
-        <button onClick={onDecrement}>-</button>
-        <button onClick={onIncrement}>+</button>
-      </div>
-      <input type="text" onChange={handleChange} />
     </div>
   );
 }
 
 export default Hello;
-
-// helpers
-
-function getExclamationMarks(numChars: number) {
-  return Array(numChars + 1).join("!");
-}
