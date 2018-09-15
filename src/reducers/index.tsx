@@ -13,6 +13,11 @@ export function enthusiasm(
         ...state,
         enthusiasmLevel: Math.max(1, state.enthusiasmLevel - 1)
       };
+    case EnthusiasmActionType.ChangeText:
+      return {
+        ...state,
+        languageName: action.text
+      };
     default:
       return state;
   }

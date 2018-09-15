@@ -1,6 +1,7 @@
 export enum EnthusiasmActionType {
   IncrementEnthusiasm,
-  DecrementEnthusiasm
+  DecrementEnthusiasm,
+  ChangeText
 }
 
 export interface IIncrementEnthusiasm {
@@ -11,7 +12,15 @@ export interface IDecrementEnthusiasm {
   type: EnthusiasmActionType.DecrementEnthusiasm;
 }
 
-export type EnthusiasmAction = IIncrementEnthusiasm | IDecrementEnthusiasm;
+export interface IChangeText {
+  type: EnthusiasmActionType.ChangeText;
+  text: string;
+}
+
+export type EnthusiasmAction =
+  | IIncrementEnthusiasm
+  | IDecrementEnthusiasm
+  | IChangeText;
 
 export function incrementEnthusiasm(): IIncrementEnthusiasm {
   return {
@@ -22,5 +31,12 @@ export function incrementEnthusiasm(): IIncrementEnthusiasm {
 export function decrementEnthusiasm(): IDecrementEnthusiasm {
   return {
     type: EnthusiasmActionType.DecrementEnthusiasm
+  };
+}
+
+export function changeText(text: string): IChangeText {
+  return {
+    text,
+    type: EnthusiasmActionType.ChangeText
   };
 }

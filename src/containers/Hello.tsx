@@ -17,6 +17,7 @@ export function mapStateToProps({
 
 export function mapDispatchToProps(dispatch: Dispatch<EnthusiasmAction>) {
   return {
+    onChange: (text: string) => dispatch(actions.changeText(text)),
     onDecrement: () => dispatch(actions.decrementEnthusiasm()),
     onIncrement: () => dispatch(actions.incrementEnthusiasm())
   };
