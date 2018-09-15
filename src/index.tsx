@@ -14,7 +14,7 @@ const store = createStore<IStoreState, EnthusiasmAction, null, null>(
   enthusiasm,
   {
     enthusiasmLevel: 1,
-    languageName: "TypeScript"
+    hashingInput: "TypeScript"
   }
 );
 

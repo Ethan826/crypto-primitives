@@ -6,7 +6,7 @@ export interface IProps {
   enthusiasmLevel?: number;
   onIncrement?: () => void;
   onDecrement?: () => void;
-  onChange?: (e: any) => void;
+  onChange?: (e: string) => void;
 }
 
 function Hello({

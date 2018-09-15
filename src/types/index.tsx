@@ -1,4 +1,5 @@
 export interface IStoreState {
-  languageName: string;
+  hashingInput: string;
+  hashingOutput: string;
   enthusiasmLevel: number;
 }

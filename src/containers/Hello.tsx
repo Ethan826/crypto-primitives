@@ -7,11 +7,11 @@ import { IStoreState } from "../types/index";
 
 export function mapStateToProps({
   enthusiasmLevel,
-  languageName
+  hashingOutput
 }: IStoreState) {
   return {
     enthusiasmLevel,
-    name: languageName
+    name: hashingOutput
   };
 }
 
