@@ -7,6 +7,7 @@ export interface IProps {
   plaintext?: string;
   clickEncrypt?: () => void;
   clickDecrypt?: () => void;
+  changeKey?: (e: string) => void;
 }
 
 function Symmetric({
@@ -15,8 +16,13 @@ function Symmetric({
   clickDecrypt,
   encrypt,
   key,
+  changeKey,
   plaintext
 }: IProps) {
+  const handleKeyChange = changeKey
+    ? (e: React.ChangeEvent<HTMLTextAreaElement>) => changeKey(e.target.value)
+    : undefined;
+
   return (
     <div className="row">
       <div className="col s12">
@@ -46,7 +52,11 @@ function Symmetric({
           <form className="col s12">
             <div className="row">
               <div className="input-field col s12">
-                <textarea id="textarea1" className="materialize-textarea" />
+                <textarea
+                  id="textarea1"
+                  className="materialize-textarea"
+                  onChange={handleKeyChange}
+                />
                 <label>Key</label>
               </div>
             </div>

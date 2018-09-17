@@ -28,6 +28,14 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
           encrypt: false
         }
       };
+    case SymmetricActionType.ChangeKey:
+      return {
+        ...state,
+        symmetric: {
+          ...state.symmetric,
+          key: action.text
+        }
+      };
     default:
       return state;
   }

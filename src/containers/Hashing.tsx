@@ -13,7 +13,7 @@ export function mapStateToProps({ hashing }: IStoreState) {
 
 export function mapDispatchToProps(dispatch: Dispatch<HashingAction>) {
   return {
-    onChange: (text: string) => dispatch(actions.changeText(text))
+    onChange: (text: string) => dispatch(actions.hashingChangeText(text))
   };
 }
 
