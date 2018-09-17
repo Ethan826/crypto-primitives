@@ -5,9 +5,18 @@ export interface IProps {
   encrypt?: boolean;
   key?: string;
   plaintext?: string;
+  clickEncrypt?: () => void;
+  clickDecrypt?: () => void;
 }
 
-function Symmetric({ key, plaintext, ciphertext, encrypt }: IProps) {
+function Symmetric({
+  ciphertext,
+  clickEncrypt,
+  clickDecrypt,
+  encrypt,
+  key,
+  plaintext
+}: IProps) {
   return (
     <div className="row">
       <div className="col s12">
@@ -16,8 +25,9 @@ function Symmetric({ key, plaintext, ciphertext, encrypt }: IProps) {
           <a
             className={
               "waves-effect waves-light btn blue-grey lighten-2" +
-              (encrypt ? "" : " disabled")
+              (encrypt ? " disabled" : "")
             }
+            onClick={clickEncrypt}
           >
             Encrypt
           </a>
@@ -25,8 +35,9 @@ function Symmetric({ key, plaintext, ciphertext, encrypt }: IProps) {
           <a
             className={
               "waves-effect waves-light btn blue-grey lighten-2" +
-              (encrypt ? " disabled" : "")
+              (encrypt ? "" : " disabled")
             }
+            onClick={clickDecrypt}
           >
             Decrypt
           </a>
