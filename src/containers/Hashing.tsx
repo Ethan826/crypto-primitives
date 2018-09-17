@@ -10,8 +10,7 @@ export function mapStateToProps({
   hashingOutput
 }: IStoreState) {
   return {
-    enthusiasmLevel,
-    name: hashingOutput
+    hashed: hashingOutput
   };
 }
 

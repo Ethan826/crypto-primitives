@@ -4,7 +4,7 @@ import Hashing from "./components/Hashing";
 function App() {
   return (
     <div className="container">
-      <Hashing name="TypeScript" />
+      <Hashing />
     </div>
   );
 }

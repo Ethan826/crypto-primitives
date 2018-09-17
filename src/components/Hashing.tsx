@@ -1,16 +1,11 @@
 import * as React from "react";
 
 export interface IProps {
-  name: string;
-  enthusiasmLevel?: number;
+  hashed?: string;
   onChange?: (e: string) => void;
 }
 
-function Hashing({ name, enthusiasmLevel = 1, onChange }: IProps) {
-  if (enthusiasmLevel <= 0) {
-    throw new Error("You could be a little more enthusiastic. :D");
-  }
-
+function Hashing({ hashed = "", onChange }: IProps) {
   const handleChange = onChange
     ? (e: React.ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)
     : undefined;
@@ -31,7 +26,7 @@ function Hashing({ name, enthusiasmLevel = 1, onChange }: IProps) {
         </form>
         <div className="col">
           <h5>The output of the SHA256 hashing function is</h5>
-          <p>{name}</p>
+          <p>{hashed}</p>
         </div>
       </div>
     </div>
