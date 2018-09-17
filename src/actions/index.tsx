@@ -1,6 +1,4 @@
 export enum HashingActionType {
-  IncrementEnthusiasm,
-  DecrementEnthusiasm,
   ChangeText
 }
 

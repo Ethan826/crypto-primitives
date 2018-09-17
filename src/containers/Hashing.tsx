@@ -5,12 +5,11 @@ import { HashingAction } from "../actions";
 import Hashing from "../components/Hashing";
 import { IStoreState } from "../types";
 
-export function mapStateToProps({
-  enthusiasmLevel,
-  hashingOutput
-}: IStoreState) {
+export function mapStateToProps(state: IStoreState) {
+  // tslint:disable-next-line:no-console
+  console.log(state);
   return {
-    hashed: hashingOutput
+    hashed: state.hashingOutput
   };
 }
 
