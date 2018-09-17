@@ -1,42 +1,19 @@
-export enum EnthusiasmActionType {
+export enum HashingActionType {
   IncrementEnthusiasm,
   DecrementEnthusiasm,
   ChangeText
 }
 
-export interface IIncrementEnthusiasm {
-  type: EnthusiasmActionType.IncrementEnthusiasm;
-}
-
-export interface IDecrementEnthusiasm {
-  type: EnthusiasmActionType.DecrementEnthusiasm;
-}
-
 export interface IChangeText {
-  type: EnthusiasmActionType.ChangeText;
+  type: HashingActionType.ChangeText;
   text: string;
 }
 
-export type EnthusiasmAction =
-  | IIncrementEnthusiasm
-  | IDecrementEnthusiasm
-  | IChangeText;
-
-export function incrementEnthusiasm(): IIncrementEnthusiasm {
-  return {
-    type: EnthusiasmActionType.IncrementEnthusiasm
-  };
-}
-
-export function decrementEnthusiasm(): IDecrementEnthusiasm {
-  return {
-    type: EnthusiasmActionType.DecrementEnthusiasm
-  };
-}
+export type HashingAction = IChangeText;
 
 export function changeText(text: string): IChangeText {
   return {
     text,
-    type: EnthusiasmActionType.ChangeText
+    type: HashingActionType.ChangeText
   };
 }

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import * as actions from "../actions";
-import { EnthusiasmAction } from "../actions";
+import { HashingAction } from "../actions";
 import Hashing from "../components/Hashing";
 import { IStoreState } from "../types";
 
@@ -14,7 +14,7 @@ export function mapStateToProps({
   };
 }
 
-export function mapDispatchToProps(dispatch: Dispatch<EnthusiasmAction>) {
+export function mapDispatchToProps(dispatch: Dispatch<HashingAction>) {
   return {
     onChange: (text: string) => dispatch(actions.changeText(text))
   };

@@ -1,13 +1,13 @@
 import { codec, hash } from "sjcl";
-import { EnthusiasmAction, EnthusiasmActionType } from "../actions";
+import { HashingAction, HashingActionType } from "../actions";
 import { IStoreState } from "../types/index";
 
 export function enthusiasm(
   state: IStoreState,
-  action: EnthusiasmAction
+  action: HashingAction
 ): IStoreState {
   switch (action.type) {
-    case EnthusiasmActionType.ChangeText:
+    case HashingActionType.ChangeText:
       return {
         ...state,
         hashingInput: action.text,
