@@ -10,8 +10,10 @@ export function reducer(
     case HashingActionType.ChangeText:
       return {
         ...state,
-        hashingInput: action.text,
-        hashingOutput: codec.hex.fromBits(hash.sha256.hash(action.text))
+        hashing: {
+          hashingInput: action.text,
+          hashingOutput: codec.hex.fromBits(hash.sha256.hash(action.text))
+        }
       };
     default:
       return state;

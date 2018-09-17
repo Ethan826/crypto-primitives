@@ -11,8 +11,16 @@ import { reducer } from "./reducers/index";
 import { IStoreState } from "./types/index";
 
 const store = createStore<IStoreState, HashingAction, null, null>(reducer, {
-  hashingInput: "",
-  hashingOutput: ""
+  hashing: {
+    hashingInput: "",
+    hashingOutput: ""
+  },
+  symmetric: {
+    ciphertext: "",
+    encrypt: true,
+    key: "",
+    plaintext: ""
+  }
 });
 
 ReactDOM.render(

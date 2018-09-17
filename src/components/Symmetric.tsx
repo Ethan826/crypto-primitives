@@ -1,0 +1,63 @@
+import * as React from "react";
+
+export interface IProps {
+  ciphertext?: string;
+  encrypt?: boolean;
+  key?: string;
+  plaintext?: string;
+}
+
+function Symmetric({ key, plaintext, ciphertext, encrypt }: IProps) {
+  return (
+    <div className="row">
+      <div className="col s12">
+        <h4>Symmetric Encryption</h4>
+        <div className="card-panel">
+          <a
+            className={
+              "waves-effect waves-light btn blue-grey lighten-2" +
+              (encrypt ? "" : " disabled")
+            }
+          >
+            Encrypt
+          </a>
+          &nbsp;
+          <a
+            className={
+              "waves-effect waves-light btn blue-grey lighten-2" +
+              (encrypt ? " disabled" : "")
+            }
+          >
+            Decrypt
+          </a>
+        </div>
+        <div className="row">
+          <form className="col s12">
+            <div className="row">
+              <div className="input-field col s12">
+                <textarea id="textarea1" className="materialize-textarea" />
+                <label>Key</label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="row">
+          <form className="col s12">
+            <div className="row">
+              <div className="input-field col s12">
+                <textarea id="textarea1" className="materialize-textarea" />
+                <label>{encrypt ? "Plaintext" : "Ciphertext"}</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div className="row">
+        <h5>{encrypt ? "Ciphertext" : "Plaintext"}</h5>
+        <p className="flow-text">{key}</p>
+      </div>
+    </div>
+  );
+}
+
+export default Symmetric;

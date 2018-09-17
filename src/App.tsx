@@ -1,14 +1,12 @@
 import * as React from "react";
-import Hashing from "./containers/Hashing";
+// import Hashing from "./containers/Hashing";
+import Symmetric from "./containers/Symmetric";
 
 const App = () => {
   return (
     <div className="container">
       <nav>
-        <div className="nav-wrapper">
-          <a href="#" className="brand-logo">
-            Logo
-          </a>
+        <div className="nav-wrapper blue-grey">
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li>
               <a href="sass.html">Sass</a>
@@ -24,7 +22,8 @@ const App = () => {
       </nav>
       <div className="section" />
       <div className="row">
-        <Hashing />
+        {/* <Hashing /> */}
+        <Symmetric />
       </div>
     </div>
   );
