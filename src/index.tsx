@@ -18,8 +18,8 @@ const store = createStore<IStoreState, HashingAction, null, null>(reducer, {
   symmetric: {
     ciphertext: "",
     encrypt: true,
-    key: "",
-    plaintext: ""
+    plaintext: "",
+    theKey: ""
   }
 });
 

@@ -3,14 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/react-redux": "^6.0.8",
+    "crypto-js": "^3.1.9-1",
     "materialize-css": "^1.0.0",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-redux": "^5.0.7",
     "react-scripts-ts": "2.17.0",
-    "redux": "^4.0.0",
-    "sjcl": "^1.0.7"
+    "redux": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
@@ -19,11 +18,12 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
+    "@types/crypto-js": "^3.1.43",
     "@types/jest": "^23.3.2",
     "@types/node": "^10.9.4",
     "@types/react": "^16.4.14",
     "@types/react-dom": "^16.0.7",
-    "@types/sjcl": "^1.0.28",
+    "@types/react-redux": "^6.0.8",
     "typescript": "^3.0.3"
   }
 }

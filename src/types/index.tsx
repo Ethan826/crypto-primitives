@@ -1,8 +1,8 @@
 interface ISymmetric {
   ciphertext: string;
   encrypt: boolean;
-  key: string;
   plaintext: string;
+  theKey: string;
 }
 
 interface IHashing {
