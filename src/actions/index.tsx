@@ -10,6 +10,11 @@ export const enum HashingActionType {
   ChangeText = "ChangeText"
 }
 
+export const enum MiningActionType {
+  ChangeBlock = "ChangeBlock",
+  ChangeDifficulty = "ChangeDifficulty"
+}
+
 export const enum SymmetricActionType {
   ChangeCiphertext = "ChangeCiphertext",
   ChangeKey = "ChangeKey",
@@ -39,6 +44,15 @@ export interface IHashingChangeText {
   text: string;
 }
 
+export interface IMiningChangeBlock {
+  type: MiningActionType.ChangeBlock;
+  text: string;
+}
+export interface IMiningChangeDifficulty {
+  type: MiningActionType.ChangeDifficulty;
+  text: string;
+}
+
 export interface ISymmetricChangeKey {
   type: SymmetricActionType.ChangeKey;
   text: string;
@@ -61,6 +75,10 @@ export interface ISymmetricSelectDecrypt {
   type: SymmetricActionType.SelectDecrypt;
 }
 
+export type HashingAction = IHashingChangeText;
+
+export type MiningAction = IMiningChangeBlock | IMiningChangeDifficulty;
+
 export type NavigationAction =
   | INavigationSelectHashing
   | INavigationSelectIntro
@@ -75,9 +93,28 @@ export type SymmetricAction =
   | ISymmetricSelectDecrypt
   | ISymmetricSelectEncrypt;
 
-export type HashingAction = IHashingChangeText;
+export type Action =
+  | NavigationAction
+  | SymmetricAction
+  | HashingAction
+  | MiningAction;
 
-export type Action = NavigationAction | SymmetricAction | HashingAction;
+export const hashingChangeText = (text: string): IHashingChangeText => {
+  return {
+    text,
+    type: HashingActionType.ChangeText
+  };
+};
+
+export const miningChangeBlock = (text: string): IMiningChangeBlock => {
+  return { type: MiningActionType.ChangeBlock, text };
+};
+
+export const miningChangeDifficulty = (
+  text: string
+): IMiningChangeDifficulty => {
+  return { type: MiningActionType.ChangeDifficulty, text };
+};
 
 export const navigationSelectHashing = (): INavigationSelectHashing => {
   return { type: NavigationActionType.SelectHashing };
@@ -97,13 +134,6 @@ export const navigationSelectPublic = (): INavigationSelectPublic => {
 
 export const navigationSelectSymmetric = (): INavigationSelectSymmetric => {
   return { type: NavigationActionType.SelectSymmetric };
-};
-
-export const hashingChangeText = (text: string): IHashingChangeText => {
-  return {
-    text,
-    type: HashingActionType.ChangeText
-  };
 };
 
 export const symmetricSelectEncrypt = (): ISymmetricSelectEncrypt => {

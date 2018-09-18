@@ -5,7 +5,8 @@ export interface IProps {
   onChange?: (e: string) => void;
 }
 
-function Hashing({ hashed, onChange }: IProps) {
+function Hashing(state: IProps) {
+  const { hashed, onChange } = state;
   const handleChange = onChange
     ? (e: React.ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)
     : undefined;

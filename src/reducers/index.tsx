@@ -2,14 +2,13 @@ import * as crypto from "crypto-js";
 import {
   Action,
   HashingActionType,
+  MiningActionType,
   NavigationActionType,
   SymmetricActionType
 } from "../actions";
 import { IStoreState, Page } from "../types/index";
 
 export function reducer(state: IStoreState, action: Action): IStoreState {
-  // tslint:disable-next-line:no-console
-  console.log(JSON.stringify(state));
   switch (action.type) {
     case HashingActionType.ChangeText:
       return {
@@ -18,6 +17,47 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
           hashingInput: action.text,
           hashingOutput: crypto.SHA256(action.text).toString()
         }
+      };
+    case MiningActionType.ChangeBlock:
+      return {
+        ...state,
+        mining: {
+          ...state.mining,
+          blockHash: crypto.SHA256(action.text).toString()
+        }
+      };
+    case MiningActionType.ChangeDifficulty:
+      return {
+        ...state,
+        mining: {
+          ...state.mining,
+          difficulty: parseInt(action.text, 10)
+        }
+      };
+    case NavigationActionType.SelectHashing:
+      return {
+        ...state,
+        navigation: { ...state.navigation, currentPage: Page.Hashing }
+      };
+    case NavigationActionType.SelectIntro:
+      return {
+        ...state,
+        navigation: { ...state.navigation, currentPage: Page.Intro }
+      };
+    case NavigationActionType.SelectMining:
+      return {
+        ...state,
+        navigation: { ...state.navigation, currentPage: Page.Mining }
+      };
+    case NavigationActionType.SelectPublic:
+      return {
+        ...state,
+        navigation: { ...state.navigation, currentPage: Page.Public }
+      };
+    case NavigationActionType.SelectSymmetric:
+      return {
+        ...state,
+        navigation: { ...state.navigation, currentPage: Page.Symmetric }
       };
     case SymmetricActionType.SelectEncrypt:
       return {
@@ -66,31 +106,6 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
           ciphertext: encrypt(state.symmetric.theKey, action.text),
           plaintext: action.text
         }
-      };
-    case NavigationActionType.SelectHashing:
-      return {
-        ...state,
-        navigation: { ...state.navigation, currentPage: Page.Hashing }
-      };
-    case NavigationActionType.SelectIntro:
-      return {
-        ...state,
-        navigation: { ...state.navigation, currentPage: Page.Intro }
-      };
-    case NavigationActionType.SelectMining:
-      return {
-        ...state,
-        navigation: { ...state.navigation, currentPage: Page.Mining }
-      };
-    case NavigationActionType.SelectPublic:
-      return {
-        ...state,
-        navigation: { ...state.navigation, currentPage: Page.Public }
-      };
-    case NavigationActionType.SelectSymmetric:
-      return {
-        ...state,
-        navigation: { ...state.navigation, currentPage: Page.Symmetric }
       };
     default:
       return state;

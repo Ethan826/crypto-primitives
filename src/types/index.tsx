@@ -22,8 +22,14 @@ interface IHashing {
   hashingOutput: string;
 }
 
+interface IMining {
+  blockHash: string;
+  difficulty: number;
+}
+
 export interface IStoreState {
   hashing: IHashing;
   navigation: INavigation;
   symmetric: ISymmetric;
+  mining: IMining;
 }

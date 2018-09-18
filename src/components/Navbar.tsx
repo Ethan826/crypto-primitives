@@ -23,19 +23,19 @@ function Navbar({
     <nav>
       <div className="nav-wrapper blue-grey">
         <ul id="nav-mobile" className="right hide-on-med-and-down">
-          <li>
+          <li className={currentPage === Page.Intro ? "active" : ""}>
             <a onClick={chooseIntro}>Intro</a>
           </li>
-          <li>
+          <li className={currentPage === Page.Hashing ? "active" : ""}>
             <a onClick={chooseHashing}>Hashing</a>
           </li>
-          <li>
+          <li className={currentPage === Page.Symmetric ? "active" : ""}>
             <a onClick={chooseSymmetric}>Symmetric Crypto</a>
           </li>
-          <li>
+          <li className={currentPage === Page.Public ? "active" : ""}>
             <a onClick={choosePublic}>Public Key Crypto</a>
           </li>
-          <li>
+          <li className={currentPage === Page.Mining ? "active" : ""}>
             <a onClick={chooseMining}>Mining</a>
           </li>
         </ul>
