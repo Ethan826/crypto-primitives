@@ -1,27 +1,39 @@
 import * as React from "react";
 
 export interface IProps {
-  ciphertext?: string;
-  encrypt?: boolean;
-  key?: string;
-  plaintext?: string;
-  clickEncrypt?: () => void;
-  clickDecrypt?: () => void;
+  changeCiphertext?: (e: string) => void;
   changeKey?: (e: string) => void;
+  changePlaintext?: (e: string) => void;
+  ciphertext?: string;
+  clickDecrypt?: () => void;
+  clickEncrypt?: () => void;
+  encrypt?: boolean;
+  plaintext?: string;
 }
 
 function Symmetric({
-  ciphertext,
-  clickEncrypt,
-  clickDecrypt,
-  encrypt,
-  key,
   changeKey,
+  changePlaintext,
+  changeCiphertext,
+  ciphertext,
+  clickDecrypt,
+  clickEncrypt,
+  encrypt,
   plaintext
 }: IProps) {
   const handleKeyChange = changeKey
     ? (e: React.ChangeEvent<HTMLInputElement>) => changeKey(e.target.value)
     : undefined;
+
+  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (encrypt && changePlaintext) {
+      return changePlaintext(e.target.value);
+    } else if (!encrypt && changeCiphertext) {
+      return changeCiphertext(e.target.value);
+    } else {
+      return undefined;
+    }
+  };
 
   return (
     <div className="row">
@@ -58,13 +70,18 @@ function Symmetric({
         </form>
         <form>
           <div className="input-field col s12">
-            <textarea id="textarea1" className="materialize-textarea" />
+            <textarea
+              id="textarea1"
+              className="materialize-textarea"
+              onChange={handleTextChange}
+            />
             <label>{encrypt ? "Plaintext" : "Ciphertext"}</label>
           </div>
         </form>
       </div>
       <div className="col s6">
         <h5>{encrypt ? "Ciphertext" : "Plaintext"}</h5>
+        <p>{encrypt ? ciphertext : plaintext}</p>
       </div>
     </div>
   );

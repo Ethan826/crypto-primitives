@@ -3,7 +3,9 @@ export const enum HashingActionType {
 }
 
 export const enum SymmetricActionType {
+  ChangeCiphertext = "ChangeCiphertext",
   ChangeKey = "ChangeKey",
+  ChangePlaintext = "ChangePlaintext",
   SelectDecrypt = "SelectDecrypt",
   SelectEncrypt = "SelectEncrypt"
 }
@@ -18,6 +20,16 @@ export interface ISymmetricChangeKey {
   text: string;
 }
 
+export interface ISymmetricChangePlaintext {
+  type: SymmetricActionType.ChangePlaintext;
+  text: string;
+}
+
+export interface ISymmetricChangeCiphertext {
+  type: SymmetricActionType.ChangeCiphertext;
+  text: string;
+}
+
 export interface ISymmetricSelectEncrypt {
   type: SymmetricActionType.SelectEncrypt;
 }
@@ -26,9 +38,11 @@ export interface ISymmetricSelectDecrypt {
 }
 
 export type SymmetricAction =
+  | ISymmetricChangeCiphertext
+  | ISymmetricChangeKey
+  | ISymmetricChangePlaintext
   | ISymmetricSelectDecrypt
-  | ISymmetricSelectEncrypt
-  | ISymmetricChangeKey;
+  | ISymmetricSelectEncrypt;
 
 export type HashingAction = IHashingChangeText;
 
@@ -53,5 +67,23 @@ export const symmetricChangeKey = (text: string): ISymmetricChangeKey => {
   return {
     text,
     type: SymmetricActionType.ChangeKey
+  };
+};
+
+export const symmetricChangeCiphertext = (
+  text: string
+): ISymmetricChangeCiphertext => {
+  return {
+    text,
+    type: SymmetricActionType.ChangeCiphertext
+  };
+};
+
+export const symmetricChangePlaintext = (
+  text: string
+): ISymmetricChangePlaintext => {
+  return {
+    text,
+    type: SymmetricActionType.ChangePlaintext
   };
 };

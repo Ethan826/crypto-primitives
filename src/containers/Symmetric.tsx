@@ -11,7 +11,11 @@ const mapStateToProps = ({ symmetric }: IStoreState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<SymmetricAction>) => {
   return {
+    changeCiphertext: (e: string) =>
+      dispatch(actions.symmetricChangeCiphertext(e)),
     changeKey: (e: string) => dispatch(actions.symmetricChangeKey(e)),
+    changePlaintext: (e: string) =>
+      dispatch(actions.symmetricChangePlaintext(e)),
     clickDecrypt: () => dispatch(actions.symmetricSelectDecrypt()),
     clickEncrypt: () => dispatch(actions.symmetricSelectEncrypt())
   };

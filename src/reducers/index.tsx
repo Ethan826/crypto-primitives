@@ -50,6 +50,30 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
           theKey: action.text
         }
       };
+    case SymmetricActionType.ChangeCiphertext:
+      return {
+        ...state,
+        symmetric: {
+          ...state.symmetric,
+          ciphertext: action.text,
+          plaintext: crypto.AES.decrypt(
+            state.symmetric.theKey,
+            action.text
+          ).toString()
+        }
+      };
+    case SymmetricActionType.ChangePlaintext:
+      return {
+        ...state,
+        symmetric: {
+          ...state.symmetric,
+          ciphertext: crypto.AES.encrypt(
+            state.symmetric.theKey,
+            action.text
+          ).toString(),
+          plaintext: action.text
+        }
+      };
     default:
       return state;
   }
