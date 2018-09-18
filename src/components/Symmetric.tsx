@@ -39,7 +39,8 @@ function Symmetric({
 
   return (
     <div className="row">
-      <div className="col s6 card-panel">
+      <h4>Symmetric Cryptography</h4>
+      <div className="col s6 card-panel section">
         <div className="section" />
         <a
           className={

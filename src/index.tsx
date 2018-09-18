@@ -8,12 +8,15 @@ import { createStore } from "redux";
 import { HashingAction } from "./actions";
 import App from "./App";
 import { reducer } from "./reducers/index";
-import { IStoreState } from "./types/index";
+import { IStoreState, Page } from "./types/index";
 
 const store = createStore<IStoreState, HashingAction, null, null>(reducer, {
   hashing: {
     hashingInput: "",
     hashingOutput: ""
+  },
+  navigation: {
+    currentPage: Page.Intro
   },
   symmetric: {
     ciphertext: "",

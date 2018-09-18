@@ -1,3 +1,15 @@
+export const enum Page {
+  Hashing = "Hashing",
+  Intro = "Intro",
+  Mining = "Mining",
+  Public = "Public",
+  Symmetric = "Symmetric"
+}
+
+interface INavigation {
+  currentPage: Page;
+}
+
 interface ISymmetric {
   ciphertext: string;
   encrypt: boolean;
@@ -12,5 +24,6 @@ interface IHashing {
 
 export interface IStoreState {
   hashing: IHashing;
+  navigation: INavigation;
   symmetric: ISymmetric;
 }
