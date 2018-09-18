@@ -36,17 +36,11 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
         symmetric: {
           ...state.symmetric,
           ciphertext: state.symmetric.encrypt
-            ? crypto.AES.encrypt(
-                action.text,
-                state.symmetric.plaintext
-              ).toString()
+            ? encrypt(action.text, state.symmetric.plaintext)
             : state.symmetric.ciphertext,
           plaintext: state.symmetric.encrypt
             ? state.symmetric.plaintext
-            : crypto.AES.decrypt(
-                action.text,
-                state.symmetric.ciphertext
-              ).toString(),
+            : decrypt(action.text, state.symmetric.ciphertext),
           theKey: action.text
         }
       };
@@ -56,10 +50,7 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
         symmetric: {
           ...state.symmetric,
           ciphertext: action.text,
-          plaintext: crypto.AES.decrypt(
-            state.symmetric.theKey,
-            action.text
-          ).toString()
+          plaintext: decrypt(state.symmetric.theKey, action.text)
         }
       };
     case SymmetricActionType.ChangePlaintext:
@@ -67,10 +58,7 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
         ...state,
         symmetric: {
           ...state.symmetric,
-          ciphertext: crypto.AES.encrypt(
-            state.symmetric.theKey,
-            action.text
-          ).toString(),
+          ciphertext: encrypt(state.symmetric.theKey, action.text),
           plaintext: action.text
         }
       };
@@ -78,3 +66,14 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
       return state;
   }
 }
+
+// Helpers
+
+const encrypt = (key: string, plaintext: string): string => {
+  return crypto.AES.encrypt(plaintext, key).toString();
+};
+
+const decrypt = (key: string, ciphertext: string): string => {
+  const bytes = crypto.AES.decrypt(ciphertext, key);
+  return bytes.toString(crypto.enc.Utf8);
+};

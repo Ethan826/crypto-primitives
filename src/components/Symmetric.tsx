@@ -9,6 +9,7 @@ export interface IProps {
   clickEncrypt?: () => void;
   encrypt?: boolean;
   plaintext?: string;
+  theKey?: string;
 }
 
 function Symmetric({
@@ -19,7 +20,8 @@ function Symmetric({
   clickDecrypt,
   clickEncrypt,
   encrypt,
-  plaintext
+  plaintext,
+  theKey
 }: IProps) {
   const handleKeyChange = changeKey
     ? (e: React.ChangeEvent<HTMLInputElement>) => changeKey(e.target.value)
