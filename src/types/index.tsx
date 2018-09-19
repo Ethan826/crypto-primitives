@@ -1,6 +1,5 @@
 export const enum Page {
   Hashing = "Hashing",
-  Intro = "Intro",
   Mining = "Mining",
   Public = "Public",
   Symmetric = "Symmetric"

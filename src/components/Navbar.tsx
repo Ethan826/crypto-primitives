@@ -4,7 +4,6 @@ import { Page } from "../types";
 // tslint:disable-next-line:no-empty-interface
 export interface IProps {
   chooseHashing: () => void;
-  chooseIntro: () => void;
   chooseMining: () => void;
   choosePublic: () => void;
   chooseSymmetric: () => void;
@@ -13,7 +12,6 @@ export interface IProps {
 
 function Navbar({
   chooseHashing,
-  chooseIntro,
   chooseMining,
   choosePublic,
   chooseSymmetric,
@@ -23,9 +21,6 @@ function Navbar({
     <nav>
       <div className="nav-wrapper blue-grey">
         <ul id="nav-mobile" className="right hide-on-med-and-down">
-          <li className={currentPage === Page.Intro ? "active" : ""}>
-            <a onClick={chooseIntro}>Intro</a>
-          </li>
           <li className={currentPage === Page.Hashing ? "active" : ""}>
             <a onClick={chooseHashing}>Hashing</a>
           </li>

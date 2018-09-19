@@ -22,7 +22,7 @@ const store = createStore<IStoreState, HashingAction, null, null>(reducer, {
     difficulty: 0
   },
   navigation: {
-    currentPage: Page.Intro
+    currentPage: Page.Hashing
   },
   symmetric: {
     ciphertext: "",

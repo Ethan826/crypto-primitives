@@ -10,9 +10,6 @@ export interface IProps {
 
 function Main({ currentPage }: IProps) {
   switch (currentPage) {
-    // case Page.Intro:
-    //   return <Intro />;
-    //   break;
     case Page.Hashing:
       return <Hashing />;
       break;
@@ -27,7 +24,6 @@ function Main({ currentPage }: IProps) {
     //   break;
     default:
       return <Hashing />;
-    //   return <Intro />;
   }
 }
 

@@ -39,11 +39,6 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
         ...state,
         navigation: { ...state.navigation, currentPage: Page.Hashing }
       };
-    case NavigationActionType.SelectIntro:
-      return {
-        ...state,
-        navigation: { ...state.navigation, currentPage: Page.Intro }
-      };
     case NavigationActionType.SelectMining:
       return {
         ...state,

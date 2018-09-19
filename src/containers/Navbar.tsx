@@ -11,7 +11,6 @@ const mapStateToProps = ({ navigation }: IStoreState) => navigation;
 const mapDispatchToProps = (dispatch: Dispatch<NavigationAction>) => {
   return {
     chooseHashing: () => dispatch(actions.navigationSelectHashing()),
-    chooseIntro: () => dispatch(actions.navigationSelectIntro()),
     chooseMining: () => dispatch(actions.navigationSelectMining()),
     choosePublic: () => dispatch(actions.navigationSelectPublic()),
     chooseSymmetric: () => dispatch(actions.navigationSelectSymmetric())

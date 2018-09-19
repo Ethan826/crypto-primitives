@@ -1,6 +1,5 @@
 export const enum NavigationActionType {
   SelectHashing = "SelectHashing",
-  SelectIntro = "SelectIntro",
   SelectMining = "SelectMining",
   SelectPublic = "SelectPublic",
   SelectSymmetric = "SelectSymmetric"
@@ -26,15 +25,15 @@ export const enum SymmetricActionType {
 export interface INavigationSelectHashing {
   type: NavigationActionType.SelectHashing;
 }
-export interface INavigationSelectIntro {
-  type: NavigationActionType.SelectIntro;
-}
+
 export interface INavigationSelectMining {
   type: NavigationActionType.SelectMining;
 }
+
 export interface INavigationSelectPublic {
   type: NavigationActionType.SelectPublic;
 }
+
 export interface INavigationSelectSymmetric {
   type: NavigationActionType.SelectSymmetric;
 }
@@ -81,7 +80,6 @@ export type MiningAction = IMiningChangeBlock | IMiningChangeDifficulty;
 
 export type NavigationAction =
   | INavigationSelectHashing
-  | INavigationSelectIntro
   | INavigationSelectMining
   | INavigationSelectPublic
   | INavigationSelectSymmetric;
@@ -118,10 +116,6 @@ export const miningChangeDifficulty = (
 
 export const navigationSelectHashing = (): INavigationSelectHashing => {
   return { type: NavigationActionType.SelectHashing };
-};
-
-export const navigationSelectIntro = (): INavigationSelectIntro => {
-  return { type: NavigationActionType.SelectIntro };
 };
 
 export const navigationSelectMining = (): INavigationSelectMining => {
