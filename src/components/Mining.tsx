@@ -1,19 +1,33 @@
 import * as crypto from "crypto-js";
 import * as React from "react";
 
+interface IState {
+  bestNonce: string;
+  bestZeroes: number;
+  hashNonce: string;
+  bestHashed: string;
+  nonce: string;
+}
+
 export interface IProps {
-  bestResult?: string;
-  bestResultLeadingZeroes?: number;
   blockHash?: string;
   changeBlock?: (e: string) => void;
   changeDifficulty?: (e: string) => void;
-  hashNonce?: string;
+  difficulty: number;
 }
 
 class Mining extends React.Component {
+  public state: IState;
+
   constructor(public props: IProps) {
     super(props);
-    this.state = { nonce: "" };
+    this.state = {
+      bestHashed: "",
+      bestNonce: "",
+      bestZeroes: 0,
+      hashNonce: "",
+      nonce: ""
+    };
   }
 
   public render = () => {
@@ -61,13 +75,17 @@ class Mining extends React.Component {
               <dt>Current nonce</dt>
               <dd>{this.state.nonce}</dd>
               <dt>Current hash&nbsp;+ nonce</dt>
-              <dd>{this.props.hashNonce}</dd>
+              <dd>{this.state.hashNonce}</dd>
               <dt>Best result so far</dt>
               <dd>
-                {this.props.bestResult}{" "}
-                {this.props.bestResultLeadingZeroes
-                  ? this.props.bestResultLeadingZeroes + " zeroes"
+                {this.state.bestZeroes
+                  ? this.state.bestNonce +
+                    " gives " +
+                    this.state.bestZeroes +
+                    " leading zeroes."
                   : ""}
+                <br />
+                {this.state.bestZeroes ? "(" + this.state.bestHashed + ")" : ""}
               </dd>
             </dl>
           </div>
@@ -91,7 +109,37 @@ class Mining extends React.Component {
   };
 
   private mine = () => {
-    this.props.nonce = crypto.enc.Hex.stringify(crypto.lib.WordArray.random(8));
+    let nonce = "";
+    let hashNonce = "";
+    let reHashed = "";
+
+    setInterval(() => {
+      nonce = crypto.enc.Hex.stringify(crypto.lib.WordArray.random(16));
+      hashNonce = this.props.blockHash + nonce;
+      reHashed = crypto.SHA256(hashNonce).toString();
+      let x = 0;
+      for (; x < reHashed.length; ++x) {
+        if (reHashed.charAt(x) !== "0") {
+          break;
+        }
+      }
+      if (x > this.state.bestZeroes) {
+        this.setState({
+          bestHashed: reHashed,
+          bestNonce: nonce,
+          bestZeroes: x
+        });
+      }
+
+      this.setState({
+        hashNonce,
+        nonce
+      });
+
+      if (this.state.bestZeroes >= this.props.difficulty) {
+        return;
+      }
+    }, 0);
   };
 }
 
