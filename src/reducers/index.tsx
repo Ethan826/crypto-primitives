@@ -12,10 +12,6 @@ import {
 import { IStoreState, Page } from "../types/index";
 
 export function reducer(state: IStoreState, action: Action): IStoreState {
-  // tslint:disable-next-line:no-console
-  console.log(state);
-  // tslint:disable-next-line:no-console
-  console.log(action);
   switch (action.type) {
     case HashingActionType.ChangeText:
       return {
@@ -41,6 +37,8 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
           difficulty: parseInt(action.text, 10)
         }
       };
+    case PublicActionType.ChangeSignature:
+      return { ...state, pki: { ...state.pki, signature: action.text } };
     case PublicActionType.ChangeText:
       return { ...state, pki: { ...state.pki, text: action.text } };
     case PublicActionType.Decrypt:

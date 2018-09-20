@@ -9,11 +9,13 @@ const mapStateToProps = ({ pki }: IStoreState) => pki;
 
 const mapDispatchToState = (dispatch: Dispatch<PublicAction>) => {
   return {
+    changeSignature: (e: string) => dispatch(actions.publicChangeSignature(e)),
     changeText: (e: string) => dispatch(actions.publicChangeText(e)),
     decrypt: () => dispatch(actions.publicDecrypt()),
     encrypt: () => dispatch(actions.publicEncrypt()),
     generateKeyPair: () => dispatch(actions.publicGenerateKeyPair()),
-    sign: () => dispatch(actions.publicSign())
+    sign: () => dispatch(actions.publicSign()),
+    verify: () => dispatch(actions.publicVerify())
   };
 };
 

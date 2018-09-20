@@ -15,11 +15,13 @@ export const enum MiningActionType {
 }
 
 export const enum PublicActionType {
-  ChangeText = "ChangeText",
+  ChangeSignature = "ChangeSignature",
+  ChangeText = "PublicChangeText",
   Decrypt = "Decrypt",
   Encrypt = "Encrypt",
   GenerateKeyPair = "GenerateKeyPair",
-  Sign = "Sign"
+  Sign = "Sign",
+  Verify = "Verify"
 }
 
 export const enum SymmetricActionType {
@@ -46,6 +48,11 @@ export interface INavigationSelectSymmetric {
   type: NavigationActionType.SelectSymmetric;
 }
 
+export interface IPublicChangeSignature {
+  type: PublicActionType.ChangeSignature;
+  text: string;
+}
+
 export interface IPublicChangeText {
   type: PublicActionType.ChangeText;
   text: string;
@@ -61,6 +68,14 @@ export interface IPublicEncrypt {
 
 export interface IPublicGenerateKeyPair {
   type: PublicActionType.GenerateKeyPair;
+}
+
+export interface IPublicSign {
+  type: PublicActionType.Sign;
+}
+
+export interface IPublicVerify {
+  type: PublicActionType.Verify;
 }
 
 export interface IPublicSign {
@@ -114,11 +129,13 @@ export type NavigationAction =
   | INavigationSelectSymmetric;
 
 export type PublicAction =
+  | IPublicChangeSignature
   | IPublicChangeText
   | IPublicDecrypt
   | IPublicEncrypt
   | IPublicGenerateKeyPair
-  | IPublicSign;
+  | IPublicSign
+  | IPublicVerify;
 
 export type SymmetricAction =
   | ISymmetricChangeCiphertext
@@ -151,8 +168,12 @@ export const miningChangeDifficulty = (
   return { type: MiningActionType.ChangeDifficulty, text };
 };
 
-export const publicChangeText = (e: string): IPublicChangeText => {
-  return { type: PublicActionType.ChangeText, text: e };
+export const publicChangeText = (text: string): IPublicChangeText => {
+  return { type: PublicActionType.ChangeText, text };
+};
+
+export const publicChangeSignature = (text: string): IPublicChangeSignature => {
+  return { type: PublicActionType.ChangeSignature, text };
 };
 
 export const publicDecrypt = (): IPublicDecrypt => {
@@ -169,6 +190,10 @@ export const publicGenerateKeyPair = (): IPublicGenerateKeyPair => {
 
 export const publicSign = (): IPublicSign => {
   return { type: PublicActionType.Sign };
+};
+
+export const publicVerify = (): IPublicVerify => {
+  return { type: PublicActionType.Verify };
 };
 
 export const navigationSelectHashing = (): INavigationSelectHashing => {

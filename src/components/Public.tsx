@@ -3,26 +3,36 @@ import * as React from "react";
 
 export interface IProps {
   changeText?: (e: string) => void;
+  changeSignature?: (e: string) => void;
   decrypt?: () => void;
   encrypt?: () => void;
   generateKeyPair?: () => void;
   keyPair?: forge.pki.KeyPair;
   sign?: () => void;
+  signature: string;
   text?: string;
   textOutput?: string;
+  verify?: () => void;
 }
 
 const Public = ({
   changeText,
+  changeSignature,
   decrypt,
   encrypt,
   generateKeyPair,
   keyPair,
   sign,
-  textOutput
+  signature,
+  text,
+  textOutput,
+  verify
 }: IProps) => {
   const handleChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
     changeText && changeText(e.target.value);
+
+  const handleSignatureChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    changeSignature && changeSignature(e.target.value);
 
   return (
     <div>
@@ -37,8 +47,20 @@ const Public = ({
               <textarea
                 className="materialize-textarea"
                 onChange={handleChangeText}
+                value={text}
               />
               <label>Enter Text</label>
+            </div>
+          </div>
+          <div className="row">
+            <div className="input-field col s12">
+              <input
+                type="text"
+                className="input-field"
+                onChange={handleSignatureChange}
+                value={signature}
+              />
+              <label className={signature ? "active" : ""}>Signature</label>
             </div>
           </div>
         </form>
@@ -71,6 +93,16 @@ const Public = ({
             onClick={sign}
           >
             Sign
+          </a>
+          &nbsp;
+          <a
+            className={
+              "waves-effect waves-light btn" +
+              (!keyPair || !text ? " disabled" : "")
+            }
+            onClick={verify}
+          >
+            Verify
           </a>
         </div>
       </div>

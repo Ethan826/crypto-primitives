@@ -22,6 +22,7 @@ interface INavigation {
 }
 
 interface IPublic {
+  signature: string;
   text: string;
   textOutput: string;
   keyPair: pki.KeyPair;
