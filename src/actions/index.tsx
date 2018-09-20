@@ -14,6 +14,14 @@ export const enum MiningActionType {
   ChangeDifficulty = "ChangeDifficulty"
 }
 
+export const enum PublicActionType {
+  ChangeText = "ChangeText",
+  Decrypt = "Decrypt",
+  Encrypt = "Encrypt",
+  GenerateKeyPair = "GenerateKeyPair",
+  Sign = "Sign"
+}
+
 export const enum SymmetricActionType {
   ChangeCiphertext = "ChangeCiphertext",
   ChangeKey = "ChangeKey",
@@ -36,6 +44,27 @@ export interface INavigationSelectPublic {
 
 export interface INavigationSelectSymmetric {
   type: NavigationActionType.SelectSymmetric;
+}
+
+export interface IPublicChangeText {
+  type: PublicActionType.ChangeText;
+  text: string;
+}
+
+export interface IPublicDecrypt {
+  type: PublicActionType.Decrypt;
+}
+
+export interface IPublicEncrypt {
+  type: PublicActionType.Encrypt;
+}
+
+export interface IPublicGenerateKeyPair {
+  type: PublicActionType.GenerateKeyPair;
+}
+
+export interface IPublicSign {
+  type: PublicActionType.Sign;
 }
 
 export interface IHashingChangeText {
@@ -84,6 +113,13 @@ export type NavigationAction =
   | INavigationSelectPublic
   | INavigationSelectSymmetric;
 
+export type PublicAction =
+  | IPublicChangeText
+  | IPublicDecrypt
+  | IPublicEncrypt
+  | IPublicGenerateKeyPair
+  | IPublicSign;
+
 export type SymmetricAction =
   | ISymmetricChangeCiphertext
   | ISymmetricChangeKey
@@ -92,10 +128,11 @@ export type SymmetricAction =
   | ISymmetricSelectEncrypt;
 
 export type Action =
-  | NavigationAction
-  | SymmetricAction
   | HashingAction
-  | MiningAction;
+  | MiningAction
+  | PublicAction
+  | NavigationAction
+  | SymmetricAction;
 
 export const hashingChangeText = (text: string): IHashingChangeText => {
   return {
@@ -112,6 +149,26 @@ export const miningChangeDifficulty = (
   text: string
 ): IMiningChangeDifficulty => {
   return { type: MiningActionType.ChangeDifficulty, text };
+};
+
+export const publicChangeText = (e: string): IPublicChangeText => {
+  return { type: PublicActionType.ChangeText, text: e };
+};
+
+export const publicDecrypt = (): IPublicDecrypt => {
+  return { type: PublicActionType.Decrypt };
+};
+
+export const publicEncrypt = (): IPublicEncrypt => {
+  return { type: PublicActionType.Encrypt };
+};
+
+export const publicGenerateKeyPair = (): IPublicGenerateKeyPair => {
+  return { type: PublicActionType.GenerateKeyPair };
+};
+
+export const publicSign = (): IPublicSign => {
+  return { type: PublicActionType.Sign };
 };
 
 export const navigationSelectHashing = (): INavigationSelectHashing => {

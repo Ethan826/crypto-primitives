@@ -1,6 +1,7 @@
 import * as React from "react";
 import Hashing from "../containers/Hashing";
 import Mining from "../containers/Mining";
+import Public from "../containers/Public";
 import Symmetric from "../containers/Symmetric";
 import { Page } from "../types";
 
@@ -19,9 +20,9 @@ function Main({ currentPage }: IProps) {
     case Page.Symmetric:
       return <Symmetric />;
       break;
-    // case Page.Public:
-    //   return <Public />;
-    //   break;
+    case Page.Public:
+      return <Public />;
+      break;
     default:
       return <Hashing />;
   }

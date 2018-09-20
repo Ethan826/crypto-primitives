@@ -1,14 +1,21 @@
 import * as crypto from "crypto-js";
+import * as forge from "node-forge";
+
 import {
   Action,
   HashingActionType,
   MiningActionType,
   NavigationActionType,
+  PublicActionType,
   SymmetricActionType
 } from "../actions";
 import { IStoreState, Page } from "../types/index";
 
 export function reducer(state: IStoreState, action: Action): IStoreState {
+  // tslint:disable-next-line:no-console
+  console.log(state);
+  // tslint:disable-next-line:no-console
+  console.log(action);
   switch (action.type) {
     case HashingActionType.ChangeText:
       return {
@@ -34,6 +41,38 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
           difficulty: parseInt(action.text, 10)
         }
       };
+    case PublicActionType.ChangeText:
+      return { ...state, pki: { ...state.pki, text: action.text } };
+    case PublicActionType.Decrypt:
+      return {
+        ...state,
+        pki: {
+          ...state.pki,
+          textOutput: state.pki.keyPair.privateKey.decrypt(
+            new Buffer(state.pki.text, "hex")
+          )
+        }
+      };
+    case PublicActionType.Encrypt:
+      return {
+        ...state,
+        pki: {
+          ...state.pki,
+          textOutput: state.pki.keyPair.publicKey
+            .encrypt(new Buffer(state.pki.text, "utf8"))
+            .toString("hex")
+        }
+      };
+    case PublicActionType.GenerateKeyPair:
+      return {
+        ...state,
+        pki: {
+          ...state.pki,
+          keyPair: forge.pki.rsa.generateKeyPair()
+        }
+      };
+    case PublicActionType.Sign:
+      return state;
     case NavigationActionType.SelectHashing:
       return {
         ...state,

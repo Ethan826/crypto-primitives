@@ -13,6 +13,7 @@ function Hashing(state: IProps) {
 
   return (
     <div className="row">
+      <h4>Hashing</h4>
       <div className="col s12">
         <form className="col s12">
           <div className="row">
