@@ -70,7 +70,27 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
         }
       };
     case PublicActionType.Sign:
-      return state;
+      return {
+        ...state,
+        pki: {
+          ...state.pki,
+          textOutput: sign(state.pki.text, state.pki.keyPair)
+        }
+      };
+    case PublicActionType.Verify:
+      return {
+        ...state,
+        pki: {
+          ...state.pki,
+          textOutput: verify(
+            state.pki.text,
+            state.pki.signature,
+            state.pki.keyPair
+          )
+            ? "Valid"
+            : "Invalid"
+        }
+      };
     case NavigationActionType.SelectHashing:
       return {
         ...state,
@@ -153,4 +173,23 @@ const encrypt = (key: string, plaintext: string): string => {
 const decrypt = (key: string, ciphertext: string): string => {
   const bytes = crypto.AES.decrypt(ciphertext, key);
   return bytes.toString(crypto.enc.Utf8);
+};
+
+const sign = (message: string, keyPair: forge.pki.KeyPair): string => {
+  const md = forge.md.sha1.create();
+  md.update(message, "utf8");
+  return forge.util.encode64(keyPair.privateKey.sign(md));
+};
+
+const verify = (
+  message: string,
+  signature: string,
+  keyPair: forge.pki.KeyPair
+): boolean => {
+  const md = forge.md.sha1.create();
+  md.update(message, "utf8");
+  return keyPair.publicKey.verify(
+    md.digest().bytes(),
+    forge.util.decode64(signature)
+  );
 };
