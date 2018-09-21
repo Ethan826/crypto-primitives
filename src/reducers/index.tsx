@@ -46,9 +46,7 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
         ...state,
         pki: {
           ...state.pki,
-          textOutput: state.pki.keyPair.privateKey.decrypt(
-            new Buffer(state.pki.text, "hex")
-          )
+          textOutput: pkiDecrypt(state.pki.text, state.pki.keyPair)
         }
       };
     case PublicActionType.Encrypt:
@@ -56,9 +54,7 @@ export function reducer(state: IStoreState, action: Action): IStoreState {
         ...state,
         pki: {
           ...state.pki,
-          textOutput: state.pki.keyPair.publicKey
-            .encrypt(new Buffer(state.pki.text, "utf8"))
-            .toString("hex")
+          textOutput: pkiEncrypt(state.pki.text, state.pki.keyPair)
         }
       };
     case PublicActionType.GenerateKeyPair:
@@ -173,6 +169,16 @@ const encrypt = (key: string, plaintext: string): string => {
 const decrypt = (key: string, ciphertext: string): string => {
   const bytes = crypto.AES.decrypt(ciphertext, key);
   return bytes.toString(crypto.enc.Utf8);
+};
+
+const pkiEncrypt = (plaintext: string, keyPair: forge.pki.KeyPair): string => {
+  const encrypted = keyPair.publicKey.encrypt(Buffer.from(plaintext));
+  return forge.util.encode64(encrypted);
+};
+
+const pkiDecrypt = (ciphertext: string, keyPair: forge.pki.KeyPair): string => {
+  const decoded = forge.util.decode64(ciphertext);
+  return keyPair.privateKey.decrypt(decoded).toString();
 };
 
 const sign = (message: string, keyPair: forge.pki.KeyPair): string => {
