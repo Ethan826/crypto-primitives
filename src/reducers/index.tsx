@@ -192,10 +192,14 @@ const verify = (
   signature: string,
   keyPair: forge.pki.KeyPair
 ): boolean => {
-  const md = forge.md.sha1.create();
-  md.update(message, "utf8");
-  return keyPair.publicKey.verify(
-    md.digest().bytes(),
-    forge.util.decode64(signature)
-  );
+  try {
+    const md = forge.md.sha1.create();
+    md.update(message, "utf8");
+    return keyPair.publicKey.verify(
+      md.digest().bytes(),
+      forge.util.decode64(signature)
+    );
+  } catch {
+    return false;
+  }
 };

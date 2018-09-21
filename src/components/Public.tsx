@@ -58,7 +58,6 @@ const Public = ({
                 type="text"
                 className="input-field"
                 onChange={handleSignatureChange}
-                value={signature}
               />
               <label className={signature ? "active" : ""}>Signature</label>
             </div>
